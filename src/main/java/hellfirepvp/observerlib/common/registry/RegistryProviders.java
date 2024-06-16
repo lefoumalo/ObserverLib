@@ -21,10 +21,10 @@ import javax.annotation.Nullable;
 public class RegistryProviders {
 
     public static final ResourceKey<Registry<ObserverProvider>> REGISTRY_KEY = ResourceKey.createRegistryKey(ObserverLib.key("observer_providers"));
-    private static Registry<ObserverProvider> REGISTRY;
+    private static final Registry<ObserverProvider> REGISTRY = new RegistryBuilder<>(REGISTRY_KEY).create();
 
     public static void initialize(NewRegistryEvent event) {
-        REGISTRY = event.create(new RegistryBuilder<>(REGISTRY_KEY));
+        event.register(REGISTRY);
     }
 
     @Nullable

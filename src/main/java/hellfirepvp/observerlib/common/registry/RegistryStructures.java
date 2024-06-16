@@ -21,10 +21,10 @@ import javax.annotation.Nullable;
 public class RegistryStructures {
 
     public static final ResourceKey<Registry<MatchableStructure>> REGISTRY_KEY = ResourceKey.createRegistryKey(ObserverLib.key("matchable_structures"));
-    private static Registry<MatchableStructure> REGISTRY;
+    private static final Registry<MatchableStructure> REGISTRY = new RegistryBuilder<>(REGISTRY_KEY).create();
 
     public static void initialize(NewRegistryEvent event) {
-        REGISTRY = event.create(new RegistryBuilder<>(REGISTRY_KEY));
+        event.register(REGISTRY);
     }
 
     @Nullable
